@@ -106,6 +106,10 @@ def insert_into_db(ti: TaskInstance = None):
 
     postgres_hook.run(create_calendar_table)
 
+    truncate_query = """TRUNCATE TABLE public.calendar_data"""
+
+    postgres_hook.run(truncate_query)
+    
     rows = list(df.itertuples(index=False, name=None))
 
     print(rows)
